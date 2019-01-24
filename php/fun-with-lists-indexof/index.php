@@ -1,16 +1,12 @@
 <?php
 
-function index_of($head, $value) {
-    $i = 0;
-    if (!isset($head->data)) {
-        return -1; 
+function index_of($head, $value, $index = 0)
+{
+    if (null === $head) {
+        return -1;
     }
-    while ($head->data !== $value) {
-        $i++;
-        if (!isset($head->next)) {
-            return -1;
-        }
-        $head = $head->next;
+    if ($head->data === $value) {
+        return $index;
     }
-    return $i;
+    return index_of($head->next, $value, $index + 1);
 }
